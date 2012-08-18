@@ -124,3 +124,29 @@ And here are all those flags, taken from the
     repo.url::
     The relative url used to access the repository. This must be the first
     setting specified for each repositoryo. Default value: none.
+
+
+## Development
+Create a test by adding two files to the fixtures directory. Name one of them
+"something" and the other "something.json". The "something" should be a
+cgitrepos file, and the "something.json" should be a JSON file that represents
+the "something" as follows.
+
+* The root of the JSON is a list containing sections and repositories.
+* Sections of the cgitrepos file are represented as lists containing repositories..
+* Repositories are represented as dictoinaries.
+
+If a cgitrepos file looks like this,
+
+    repo.url=foo
+    repo.path=/home/tlevine/foo.git
+
+the repositories dictionary should look like this.
+
+    { "url": "foo",
+      "path": "/home/tlevine/foo.git"
+    }
+
+That is, the left side of the equal sign in the cgitrepos file corresponds to
+the key in the repositories dictionary, and the right side of the equal sign
+corresponds to the value in the dictionary.
