@@ -1,18 +1,21 @@
-[
-  { "url": "thomaslevine.com",
+{
+  "/home/tlevine/thomaslevine.com.git": {
+     "url": "thomaslevine.com",
     "path": "/home/tlevine/thomaslevine.com.git",
     "desc": "thomaslevine.com in nanoc",
     "owner": "occurrence@thomaslevine.com",
     "readme": "readme.md"
   },
-  { "url": "dumptruck",
+  "/home/tlevine/dumptruck.git": {
+     "url": "dumptruck",
     "path": "/home/tlevine/dumptruck.git",
     "owner": "occurrence@thomaslevine.com",
     "readme": "readme.md"
   },
-  { "url": "git.thomaslevine.com",
+  "/home/tlevine/git.thomaslevine.com.git": {
+    "url": "git.thomaslevine.com",
     "path": "/home/tlevine/git.thomaslevine.com.git",
     "owner": "occurrence@thomaslevine.com",
     "readme": "readme.md"
   }
-]
+}

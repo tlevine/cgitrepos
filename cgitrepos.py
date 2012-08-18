@@ -2,7 +2,7 @@ import re
 
 def _parse(cgitrepos_text):
     for line in cgitrepos_text():
-        maybe_section = re.match(r'^section=.+$'):
+        maybe_section = re.match(r'^section=.+$')
         if maybe_section:
             section = maybe_section.group(1)
 
@@ -10,4 +10,4 @@ def _parse(cgitrepos_text):
             # Not a valid line
             continue
 
-        
+    return {} 

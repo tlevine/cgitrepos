@@ -132,8 +132,9 @@ Create a test by adding two files to the fixtures directory. Name one of them
 cgitrepos file, and the "something.json" should be a JSON file that represents
 the "something" as follows.
 
-The root of the JSON is a list containing only repositories, and repositories
-are represented as associative arrays. Order of the list does not matter.
+The root of the JSON is a dict containing only repositories, and repositories
+are represented as associative arrays. The key of the repository within the
+section is the path. Order of the list does not matter.
 
 If a cgitrepos file looks like this,
 
@@ -146,15 +147,18 @@ If a cgitrepos file looks like this,
 
 the repositories dictionary should look like this.
 
-    [ { "url": "foo",
+    {
+      "/home/tlevine/bar.git": {
+        "url": "foo",
         "path": "/home/tlevine/bar.git",
         "section": "elephant"
       },
-      { "url": "chainsaw",
+      "/home/tlevine/chickenkiller.git": {
+        "url": "chainsaw",
         "path": "/home/tlevine/chickenkiller.git",
         "section": ""
       }
-    ]
+    }
 
 That is, the left side of the equal sign in the cgitrepos file, without the
 "repo." prefix, corresponds to the key in the repositories dictionary, and

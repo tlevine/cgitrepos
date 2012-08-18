@@ -15,37 +15,25 @@ def _check_fixture(name):
         observed = _parse(cgitrepos.read())
     except:
         # Such a hack
-        observed = []
+        observed = {}
 
-    expected = json.dumps(cgitrepos_json.read())
-
-    if type(observed) != list:
-        # Point out that the JSON file is bad.
-        assert 'The test is malformed; the file %s must be a list at its root.'
-
-    elif type(expected) != list:
-        # Point out that lists aren't being generated
-        n.assert_list_equal(observed, expected)
-
-    else:
-        # Test each contained list (section) and associative array (repository).
-        for section_or_repo in expected:
-            if type(section_or_repo) == list:
-                # It's a section
-                pass
-
-            elif type(section_or_repo) == dict:
-                # It's a repository
-                pass
-
-            else:
-               assert 'Sections (lists) in the JSON file may only contain repositories (associative arrays).'
-
-        # Actually, that's too hard.
-        n.assert_list_equal(observed, expected)
-
+    expected = json.loads(cgitrepos_json.read())
     cgitrepos.close()
     cgitrepos_json.close()
+
+    if type(expected) != dict:
+        # Point out that the JSON file is bad.
+        assert False, 'The test is malformed; the file %s must be a dict at its root.'
+
+    elif type(observed) != dict:
+        # Point out that the JSON file is bad.
+        assert False, 'The parser returned a type other than dict.'
+
+    else:
+        # Test each associative array (repository).
+        for name in expected:
+            n.assert_in(name, observed)
+            n.assert_dict_equal(observed[name], expected[name])
 
 # Define tests for each thing in the fixtures directory.
 fixtures = set()
@@ -54,10 +42,7 @@ for name in os.listdir('fixtures'):
     if cgitrepos_file:
         fixtures.add(cgitrepos_file.group(1))
 
-# Now the variable "fixtures" contains the names.
+# Now the variable "fixtures" contains the names, run test for all fixtures.
 def test_fixture():
-    "Run tests for all fixtures."
     for fixture in fixtures:
         yield _check_fixture, fixture
-
-nose.main()
