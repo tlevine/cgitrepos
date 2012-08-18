@@ -21,7 +21,7 @@ in this line showing up in the cgitrepos file
 
     repo.enable-log-linecount=1
 
-And here are all those flags, taken from the
+And here are all those flags/settings, taken from the
 [cgitrc manual](http://hjemli.net/git/cgit/tree/cgitrc.5.txt).
 
     REPOSITORY SETTINGS
